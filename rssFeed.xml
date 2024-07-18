@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Your Podcast Title</title>
+    <link>http://yourpodcastwebsite.com</link>
+    <description>Your Podcast Description</description>
+    <itunes:author>Your Name</itunes:author>
+    <itunes:summary>Your Podcast Summary</itunes:summary>
+    <itunes:image href="http://yourpodcastwebsite.com/path/to/your/image.jpg"/>
+    <item>
+      <title>test</title>
+      <itunes_episode>230</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721323124848.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721323124932.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T17:18:44.934Z</pubDate>
+    </item>
+    <item>
+      <title>test</title>
+      <itunes_episode>230</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721323164922.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721323164952.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T17:19:24.954Z</pubDate>
+    </item>
+    <item>
+      <title>test</title>
+      <itunes_episode>230</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721323191740.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721323191763.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T17:19:51.765Z</pubDate>
+    </item>
+  </channel>
+</rss>
