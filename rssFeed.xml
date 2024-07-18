@@ -8,6 +8,22 @@
     <itunes:summary>Your Podcast Summary</itunes:summary>
     <itunes:image href="http://yourpodcastwebsite.com/path/to/your/image.jpg"/>
     <item>
+      <title>125</title>
+      <itunes_episode>125</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721327261678.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721327261700.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T18:27:41.703Z</pubDate>
+    </item>
+    <item>
       <title>test</title>
       <itunes_episode>230</itunes_episode>
       <enclosure>
@@ -54,6 +70,54 @@
         </_attr>
       </itunes_image>
       <pubDate>2024-07-18T17:19:51.765Z</pubDate>
+    </item>
+    <item>
+      <title>test</title>
+      <itunes_episode>230</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721323585111.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721323585137.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T17:26:25.139Z</pubDate>
+    </item>
+    <item>
+      <title>new</title>
+      <itunes_episode>123</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721326210609.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721326210638.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T18:10:10.640Z</pubDate>
+    </item>
+    <item>
+      <title>new</title>
+      <itunes_episode>122</itunes_episode>
+      <enclosure>
+        <_attr>
+          <url>/uploads/audio/1721326596162.mp3</url>
+          <type>audio/mpeg</type>
+        </_attr>
+      </enclosure>
+      <itunes_image>
+        <_attr>
+          <href>/uploads/images/1721326596184.png</href>
+        </_attr>
+      </itunes_image>
+      <pubDate>2024-07-18T18:16:36.186Z</pubDate>
     </item>
   </channel>
 </rss>

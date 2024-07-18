@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast Episodes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            /* Light grey background */
+        }
+        
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            /* Space between cards */
+            justify-content: center;
+            /* Center cards in the container */
+            flex-direction: column;
+        }
+        
+        .episode {
+            background-color: #fff;
+            /* White background for cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            margin-bottom: 20px;
+            border-radius: 8px;
+            /* Rounded corners */
+            overflow: hidden;
+            /* Ensures the content fits within the rounded corners */
+            transition: transform 0.2s;
+            /* Smooth transform on hover */
+            width: calc(33.333% - 20px);
+            /* Three cards per row, accounting for gap */
+            max-width: 300px;
+            /* Maximum width of cards */
+            padding: 20px;
+        }
+        
+        .episode:hover {
+            transform: translateY(-5px);
+            /* Slight lift effect on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            /* Deeper shadow on hover */
+        }
+        
+        .episode img {
+            max-width: 100%;
+            /* Ensure image fits card width */
+            display: block;
+            margin-bottom: 10px;
+            height: auto;
+            /* Maintain aspect ratio */
+        }
+        
+        .episode h2 {
+            padding: 0 15px;
+            /* Padding around title */
+            /* font-size: 18px; */
+            /* Larger font size for title */
+        }
+        
+        .episode p {
+            padding: 0 15px 15px;
+            /* Padding around paragraph */
+            color: #666;
+            /* Dark grey color for text */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Podcast Episodes</h1>
+        <div id="episodes">
+            <!-- Episodes will be inserted here dynamically -->
+        </div>
+    </div>
+    <script>
+        fetch('/api/episodes')
+            .then(response => response.json())
+            .then(data => {
+                const episodesContainer = document.getElementById('episodes');
+
+                // Sort episodes by pubDate in descending order
+                const sortedEpisodes = data.episodes.sort((a, b) => new Date(b.pubDate[0]) - new Date(a.pubDate[0]));
+
+                sortedEpisodes.forEach(episode => {
+                    const episodeDiv = document.createElement('div');
+                    episodeDiv.className = 'episode';
+
+                    // Extracting the URL from the enclosure object
+                    const episodeUrl = episode.enclosure[0]._attr[0].url[0];
+
+                    // Extracting the image URL from the itunes_image object
+                    const episodeImage = episode.itunes_image[0]._attr[0].href[0];
+
+                    let episodeContent = `<img src="${episodeImage}" alt="Episode image" class="episode-image">`;
+                    episodeContent += `
+                        <h2>${episode.title[0]}</h2>
+                        <p>Episode ${episode.itunes_episode[0]}</p>
+                        <audio controls>
+                            <source src="${episodeUrl}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>`;
+                    episodeDiv.innerHTML = episodeContent;
+                    episodesContainer.appendChild(episodeDiv);
+                });
+            });
+    </script>
+</body>
+
+</html>

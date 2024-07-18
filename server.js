@@ -41,7 +41,11 @@ function checkAuth(req, res, next) {
     }
 }
 
+// Serve static files from the 'public' directory
 app.use(express.static('public'));
+
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/login', (req, res) => {
     res.send(`
@@ -89,22 +93,40 @@ app.post('/upload', checkAuth, upload.fields([
         const rssData = fs.readFileSync('rssFeed.xml', 'utf-8');
         const rssJson = await parseStringPromise(rssData);
 
-        // Before pushing newEpisode, ensure rssJson.rss.channel[0].item is an array
-        if (!Array.isArray(rssJson.rss.channel[0].item)) {
+        // Ensure rssJson.rss.channel[0].item exists
+        if (!rssJson.rss.channel[0].item) {
             rssJson.rss.channel[0].item = [];
         }
 
-        rssJson.rss.channel[0].item.push(newEpisode);
+        rssJson.rss.channel[0].item.unshift(newEpisode);
 
         const builder = new Builder();
         const updatedRssData = builder.buildObject(rssJson);
 
         fs.writeFileSync('rssFeed.xml', updatedRssData);
 
-        res.status(200).send('Episode uploaded and RSS feed updated. Link : <a href="/feed/podcast">View RSS feed</a>');
+        res.status(200).send('Episode uploaded and RSS feed updated.');
     } catch (err) {
         console.error(err);
         res.status(500).send('Failed to update RSS feed.');
+    }
+});
+
+// Serve home page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+// API to get episodes
+app.get('/api/episodes', async(req, res) => {
+    try {
+        const rssData = fs.readFileSync('rssFeed.xml', 'utf-8');
+        const rssJson = await parseStringPromise(rssData);
+        const episodes = rssJson.rss.channel[0].item || [];
+        res.json({ episodes });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Failed to load episodes.');
     }
 });
 
